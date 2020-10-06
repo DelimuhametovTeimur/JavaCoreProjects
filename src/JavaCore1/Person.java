@@ -31,7 +31,6 @@ public class Person {
                 arr.add(array[i]);
             }
         }
-
         System.out.print("Sum of numbers is: " + sum + "\n");
         System.out.print("String is : " + str);
 
