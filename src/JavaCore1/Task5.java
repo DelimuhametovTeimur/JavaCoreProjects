@@ -27,10 +27,32 @@ public class Task5 {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Input k: ");
-        int k = input.nextInt();
+        int k = 0;
 
-        return reverse(arr, k);
+        for(int i = 0; i < arr.length - 1; i++)
+        {
+            k = i + 1;
+
+            for(int j = i + 1; j < arr.length; j++){
+
+                //Cautam cel mai mare numar sa fie primul(apoi restul in ordine crescatoare)
+                if(i == 0 && arr[i] < arr[1] && k == 2){
+                    break;
+                }
+                else if(arr[i] > arr[j]){
+                    k++;
+                }
+            }
+
+            if(k != i + 1) { //Daca numarul e pe pozita lui nu il schimbam
+                arr = reverse(arr, k);
+
+                if(k > 2){ //Daca au fost inversate mai mult de 2 nr, incepem de la inceput ciclul
+                    i = -1;
+                }
+            }
+        }
+        return arr;
     }
 
     public static void main (String args[]){
@@ -47,12 +69,28 @@ public class Task5 {
             array[i] = input.nextInt();
         }
 
-        int newArray [] = sort(array);
-
-        System.out.print("Sorted array is: ");
+        System.out.print("\nUnsorted array is: [");
         for(int i = 0; i < length; i++)
         {
-            System.out.print(newArray[i] + " ");
+            if(i < length - 1){
+                System.out.print(array[i] + ", ");
+            }
+            else {
+                System.out.print(array[i] + "]");
+            }
+        }
+
+        int newArray [] = sort(array);
+
+        System.out.print("\n  Sorted array is: [");
+        for(int i = 0; i < length; i++)
+        {
+            if(i < length - 1){
+                System.out.print(newArray[i] + ", ");
+            }
+            else {
+                System.out.print(newArray[i] + "]");
+            }
         }
     }
 }
